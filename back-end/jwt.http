@@ -1,0 +1,30 @@
+GET http://localhost:5000/books
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhvbGV0ZXgiLCJpYXQiOjE2ODA2MDU1MDEsImV4cCI6MTY4MDYwNTUzMX0.6bL14tSpIvp79QF2hq2PDYKgxJGyd2_OBHcVjMwuANY
+
+###
+GET http://localhost:5000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvbmFsZG8iLCJwYXNzd29yZCI6ImNhdCIsImlhdCI6MTY4MTIyNTI4MSwiZXhwIjoxNjgxMjI1NDYxfQ.4UpBc8XZbnnNapciNhp09a0WmQmYimW1e2zJmI4_fd0
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+{
+  "username" : "holetex"
+}
+
+###
+POST http://localhost:5500/refreshToken
+Content-Type: application/json
+
+{
+  "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhvbGV0ZXgiLCJpYXQiOjE2ODA2MDU0MjV9.OpevHv6KV-DLbPp7Y8CiqPzvs4OvBfSTtdCzwp4RT9I"
+}
+
+
+###
+POST http//localhost:5500/logout
+Content-Type: application/json
+
+{
+  "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhvbGV0ZXgiLCJpYXQiOjE2ODA1OTIxNzl9.nJMkb1xd3Nw1JFmzY-iufBdNRdJcdUvUALhGrejM4k8"
+}
