@@ -25,7 +25,7 @@ const User = mongoose.model(
 dotenv.config();
 
 const app = express();
-const PORT = 5500;
+const PORT = process.env.PORT_AUTH || 5500;
 
 import cors from "cors";
 app.use(cors());

@@ -1,5 +1,5 @@
 // const baseUrl = process.env.BASE_URL;
-const baseUrl = 'http://localhost:5000';
+const baseUrl = import.meta.env.VITE_BASE_URL ?? 'http://localhost:5000';
 
 import axios from "@/axios";
 
