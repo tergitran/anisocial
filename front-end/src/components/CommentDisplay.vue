@@ -6,6 +6,17 @@ import { useUserStore } from "@/stores/user";
 
 const UserStore = useUserStore();
 
+interface Comment {
+  id: number,
+  userName: string,
+  userId: string,
+  text: string,
+  date: string,
+  avatar: null,
+  isShowedCommentBox: false,
+  otherComment?: Comment  []
+}
+
 const showCmt = ref(false);
 const comments = ref([
   {
@@ -49,7 +60,7 @@ const comments = ref([
 ]);
 function reply(
   value: HTMLDivElement | null,
-  comment: object,
+  comment: Comment,
   comments: Array<{}>
 ) {
   comment.isShowedCommentBox = false;
@@ -89,7 +100,7 @@ function reply(
             <CommentBox
               v-if="comment.isShowedCommentBox"
               @cancel="comment.isShowedCommentBox = false"
-              @reply="(el) => reply(el, comment, comment.otherComments)"
+              @reply="(el) => reply(el, comment as Comment, comment.otherComments)"
             ></CommentBox>
           </div>
         </div>
@@ -119,7 +130,7 @@ function reply(
                   v-if="otherComment.isShowedCommentBox"
                   @cancel="otherComment.isShowedCommentBox = false"
                   @reply="
-                    (el) => reply(el, otherComment, comment.otherComments)
+                    (el) => reply(el, otherComment as Comment, comment.otherComments)
                   "
                 ></CommentBox>
               </div>

@@ -3,12 +3,16 @@ import auth from '@/services/auth';
 import AuthStorage from "@/storage";
 import jwtDecode from "jwt-decode";
 
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
 export const useAuthStore = defineStore('auth', {
   state: () => {
     return {
       access_token: AuthStorage.data?.accessToken,
       refresh_token: AuthStorage.data?.refreshToken,
-      id: AuthStorage.data?.id
+      id: AuthStorage.data?.id,
+      $router: router
     }
   },
   getters: {
