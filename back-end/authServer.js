@@ -35,7 +35,7 @@ app.use(morgan('combined'));
 
 let refreshTokens = [];
 
-app.post("/api/v1/refreshToken", (req, res) => {
+app.post("/auth/v1/refreshToken", (req, res) => {
   const refreshToken = req.body.token;
   if (!refreshToken) res.sendStatus(401);
   if (!refreshTokens.includes(refreshToken)) {
@@ -61,7 +61,7 @@ app.post("/api/v1/refreshToken", (req, res) => {
   });
 });
 
-app.post("/api/v1/sign-up", async (req, res) => {
+app.post("/auth/v1/sign-up", async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
   if (user) {
     res.status(401).json({message: 'username already in use'});
@@ -85,7 +85,7 @@ app.post("/api/v1/sign-up", async (req, res) => {
 
 });
 
-app.post("/api/v1/login", async (req, res) => {
+app.post("/auth/v1/login", async (req, res) => {
   const data = req.body;
 
   console.log("process.env", process.env);
@@ -115,7 +115,7 @@ app.post("/api/v1/login", async (req, res) => {
   });
 });
 
-app.post("/api/v1/logout", (req, res) => {
+app.post("/auth/v1/logout", (req, res) => {
   const refreshToken = req.body.token;
   refreshTokens = refreshTokens.filter((token) => token != refreshToken);
   res.sendStatus(200);

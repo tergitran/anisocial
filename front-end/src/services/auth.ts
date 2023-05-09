@@ -1,4 +1,4 @@
-const baseUrl = import.meta.env.VITE_BASE_URL_AUTH ?? 'http://localhost:5500/api/v1';
+const baseUrl = import.meta.env.PROD ? import.meta.env.VITE_BASE_URL_AUTH : 'http://localhost:5500/auth/v1';
 const env = import.meta.env;
 
 import axios from "@/axios";
