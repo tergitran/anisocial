@@ -88,13 +88,13 @@ app.post("/api/v1/sign-up", async (req, res) => {
 app.post("/api/v1/login", async (req, res) => {
   const data = req.body;
 
+  console.log("process.env", process.env);
   // Authentication successful
   const user = await User.findOne({ username: data.username });
   if (!user) {
     res.status(401).json({message: "Incorrect User"});
     return;
   }
-  console.log("process.env", process.env);
   bcrypt.compare(data.password, user.password, (err, result) => {
     if (result) {
       // Authorization
