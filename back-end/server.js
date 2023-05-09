@@ -30,10 +30,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 
 app.use(authenToken);
-app.use('/', PostRouter);
-app.get('/people', userController.getAllPeople);
-app.use('/friends', FriendRouter);
-app.use('/user', UserRouter);
+app.use('/api/v1/', PostRouter);
+app.get('/api/v1/people', userController.getAllPeople);
+app.use('/api/v1/friends', FriendRouter);
+app.use('/api/v1/user', UserRouter);
 
 function authenToken(req, res, next) {
   // console.log("req.headers", req.headers['authorization']);
