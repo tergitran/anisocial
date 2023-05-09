@@ -94,6 +94,7 @@ app.post("/api/v1/login", async (req, res) => {
     res.status(401).json({message: "Incorrect User"});
     return;
   }
+  console.log("process.env", process.env);
   bcrypt.compare(data.password, user.password, (err, result) => {
     if (result) {
       // Authorization
