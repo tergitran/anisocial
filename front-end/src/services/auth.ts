@@ -4,6 +4,9 @@ import axios from "@/axios";
 
 export default {
   login(username: string, password: string) {
+    console.log('import.meta.env', import.meta.env);
+    console.log('baseUrl', baseUrl);
+    
     return axios.post(baseUrl + '/login', { username, password });
   },
   signUp(username: string, password: string) {
