@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 interface Props {
-  id: string;
   hideHeader?: boolean;
   hideHeaderClose?: boolean;
   noCloseOnBackdrop?: boolean;
@@ -17,6 +16,8 @@ const props = withDefaults(defineProps<Props>(), {
   noCloseOnBackdrop: false,
   open: false,
 });
+
+const id = ref(Math.floor(Math.random() * Date.now()).toString())
 
 const emit = defineEmits<{
   (e: "update:open", status: boolean): void;

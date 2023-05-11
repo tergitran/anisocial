@@ -8,6 +8,7 @@ import { ref } from "vue";
 import { useAuthStore } from "@/stores/auth";
 import { useUserStore } from "@/stores/user";
 import AuthStorage from "@/storage";
+import IconNotification from "@/components/icons/IconNotification.vue";
 
 const AuthStore = useAuthStore();
 const UserStore = useUserStore();
@@ -57,7 +58,11 @@ let id = AuthStorage.data.id;
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/friends">Friends</RouterLink>
       </nav>
-      <div class="flex gap-3">
+      <div class="flex items-center gap-3">
+        <div class="cursor-pointer relative flex">
+          <IconNotification></IconNotification>
+          <div class="bg-red-600 border-2 border-white h-fit text-white relative text-[10px] -left-2 -top-1 px-1 rounded-full">23</div>
+        </div>
         <div class="dropdown-end dropdown">
           <label
             tabindex="0"

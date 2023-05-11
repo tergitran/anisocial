@@ -4,25 +4,16 @@ import User from "../models/user.js";
 export default {
   async postList(req, res, next) {
     try {
-
-      // {
-      //   id: '1231894',
-      //   content: 'Chiều nay không có mưa rơi trên nhà em',
-      //   authorInfor: {
-      //     username: 'Tran Dan',
-      //     avatar: 'ksld.xc,ksdasgd',
-      //     id: '0120310231023023'
-      //   },
-      //   date: '19/2/1998',
-      //   like: 23,
-      //   isLiked: false,
-      //   comments: []
-      // }
-
+      const currentUser = await User.findById(req.userInfo.id);
+      const userIds = [...currentUser.friends, req.userInfo.id];
+      console.log("userIds", userIds);
       let params = {};
       if (req.query.user_id) {
         params.user_id = req.query.user_id;
+      } else {
+        params.user_id = { $in: userIds };
       }
+
       const posts = await Post.find(params).sort({created_add: -1}).populate('user_id');
       let result = posts.map(item => {
         return {
@@ -54,6 +45,26 @@ export default {
       });
       const resPost = await post.save();
       res.json({id: resPost._id, date: resPost.created_add});
+    } catch (error) {
+      console.log(error);
+      next(error)
+    }
+  },
+  async updateNewPost(req, res, next) {
+    try {
+      console.log(1111, req.params, req.body);
+      await Post.findByIdAndUpdate(req.params.id, {text: req.body.content})
+      res.json();
+    } catch (error) {
+      console.log(error);
+      next(error)
+    }
+  },
+  async deletePost(req, res, next) {
+    try {
+      const resPost = await Post.findByIdAndDelete(req.params.id);
+      console.log(resPost);
+      res.json();
     } catch (error) {
       console.log(error);
       next(error)

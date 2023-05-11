@@ -10,4 +10,10 @@ export default {
   createNewPost(data : any) { // todo: need implicit type?
     return axios.post(baseUrl + '/post/', data);
   },
+  updatePost(id: string, content: string) { // todo: need implicit type?
+    return axios.post(baseUrl + '/post/' + id, { content });
+  },
+  deletePost(id: string) { // todo: need implicit type?
+    return axios.delete(baseUrl + '/post/' + id);
+  },
 }
